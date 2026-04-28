@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>SpineUp — Posture. Progress. You.</title>
+<meta name="description" content="SpineUp posture detection and correction app">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/screens.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div id="app">
+
+<!-- 01 SPLASH -->
+<section id="screen-splash" class="screen splash-screen">
+<div class="splash-logo">
+<svg viewBox="0 0 140 140" fill="none"><defs><linearGradient id="sg" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#00c853"/><stop offset="100%" stop-color="#007a33"/></linearGradient></defs><circle cx="70" cy="70" r="65" stroke="url(#sg)" stroke-width="2" fill="none" opacity="0.3"/><path d="M70 20 C70 20,65 35,68 45 C71 55,73 58,70 70 C67 82,65 88,68 100 C71 112,70 120,70 120" stroke="url(#sg)" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="70" cy="20" r="4" fill="#00c853"/><circle cx="68" cy="45" r="3" fill="#00c853" opacity="0.8"/><circle cx="70" cy="70" r="3.5" fill="#00c853" opacity="0.9"/><circle cx="68" cy="100" r="3" fill="#00c853" opacity="0.7"/><circle cx="70" cy="120" r="4" fill="#00c853"/><path d="M58 35 Q70 30,82 35" stroke="#00c853" stroke-width="1.5" fill="none" opacity="0.4"/><path d="M55 65 Q70 58,85 65" stroke="#00c853" stroke-width="1.5" fill="none" opacity="0.4"/><path d="M58 95 Q70 88,82 95" stroke="#00c853" stroke-width="1.5" fill="none" opacity="0.4"/></svg>
+</div>
+<div class="splash-title">SpineUp</div>
+<div class="splash-subtitle">Posture. Progress. You.</div>
+</section>
+
+<!-- 02 ONBOARDING -->
+<section id="screen-onboarding" class="screen onboarding-screen">
+<button class="onboarding-skip" onclick="navigateTo('login')">Skip</button>
+<div class="onboarding-visual">
+<div class="onboarding-spine">
+<svg viewBox="0 0 200 320" fill="none"><defs><linearGradient id="bg1" x1="100" y1="0" x2="100" y2="320"><stop offset="0%" stop-color="#00c853" stop-opacity="0.6"/><stop offset="100%" stop-color="#007a33" stop-opacity="0.2"/></linearGradient><filter id="gf"><feGaussianBlur stdDeviation="8"/></filter></defs><ellipse cx="100" cy="160" rx="60" ry="140" fill="#00c853" opacity="0.04" filter="url(#gf)"/><circle cx="100" cy="35" r="20" stroke="url(#bg1)" stroke-width="2" fill="none"/><line x1="100" y1="55" x2="100" y2="200" stroke="url(#bg1)" stroke-width="3"/><line x1="100" y1="80" x2="60" y2="120" stroke="url(#bg1)" stroke-width="2.5" stroke-linecap="round"/><line x1="100" y1="80" x2="140" y2="120" stroke="url(#bg1)" stroke-width="2.5" stroke-linecap="round"/><line x1="100" y1="200" x2="70" y2="290" stroke="url(#bg1)" stroke-width="2.5" stroke-linecap="round"/><line x1="100" y1="200" x2="130" y2="290" stroke="url(#bg1)" stroke-width="2.5" stroke-linecap="round"/><circle cx="100" cy="100" r="3" fill="#00c853" opacity="0.5"/><circle cx="100" cy="130" r="3" fill="#00c853" opacity="0.5"/><circle cx="100" cy="160" r="3" fill="#00c853" opacity="0.5"/></svg>
+</div>
+</div>
+<div class="onboarding-text">
+<div class="onboarding-title">Improve <span>Posture</span><br>Live Better</div>
+<div class="onboarding-desc">Personalized exercises, real-time tracking and smart insights to strengthen your back.</div>
+</div>
+<button class="btn btn-primary" onclick="navigateTo('login')">Next</button>
+</section>
+
+<!-- 03 LOGIN -->
+<section id="screen-login" class="screen auth-screen">
+<button class="auth-back" onclick="navigateTo('onboarding')">←</button>
+<h1 class="auth-title">Welcome Back!</h1>
+<p class="auth-subtitle">Login to continue</p>
+<form onsubmit="handleLogin(event)">
+<div class="input-group"><div style="position:relative"><span class="input-icon">✉</span><input id="loginEmail" class="input-field has-icon" type="text" placeholder="Email or Phone"></div></div>
+<div class="input-group"><div style="position:relative"><span class="input-icon">🔒</span><input id="loginPassword" class="input-field has-icon" type="password" placeholder="Password"><button type="button" class="password-toggle">👁</button></div></div>
+<a class="auth-forgot">Forgot Password?</a>
+<button type="submit" class="btn btn-primary">Login</button>
+</form>
+<div class="auth-divider">or continue with</div>
+<div class="social-row"><button class="social-btn">G</button><button class="social-btn"></button><button class="social-btn">f</button></div>
+<div class="auth-footer">Don't have an account? <a onclick="navigateTo('signup')">Sign Up</a></div>
+</section>
+
+<!-- 04 SIGNUP -->
+<section id="screen-signup" class="screen auth-screen">
+<div style="height:20px"></div>
+<h1 class="auth-title">Create Account</h1>
+<p class="auth-subtitle">Sign up to get started</p>
+<form onsubmit="handleSignup(event)">
+<div class="input-group"><div style="position:relative"><span class="input-icon">👤</span><input id="signupName" class="input-field has-icon" type="text" placeholder="Full Name"></div></div>
+<div class="input-group"><div style="position:relative"><span class="input-icon">✉</span><input id="signupEmail" class="input-field has-icon" type="email" placeholder="Email"></div></div>
+<div class="input-group"><div style="position:relative"><span class="input-icon">🔒</span><input id="signupPassword" class="input-field has-icon" type="password" placeholder="Password"><button type="button" class="password-toggle">👁</button></div></div>
+<div class="input-group"><div style="position:relative"><span class="input-icon">🔒</span><input id="signupConfirm" class="input-field has-icon" type="password" placeholder="Confirm Password"></div></div>
+<div class="checkbox-row" style="margin-bottom:20px"><div id="termsCheck" class="checkbox"></div><span>I agree to the <a>Terms of Service</a> and <a>Privacy Policy</a></span></div>
+<button type="submit" class="btn btn-primary">Sign Up</button>
+</form>
+<div class="auth-footer">Already have an account? <a onclick="navigateTo('login')">Login</a></div>
+</section>
+
+<!-- 05 HOME DASHBOARD -->
+<section id="screen-home" class="screen has-nav">
+<div class="status-bar"><span>9:41</span><div class="status-icons">●●● ▐█▌</div></div>
+<div class="home-header">
+<div><div class="home-greeting" id="homeGreeting">Hello, Arjun 👋</div><div class="home-motivational" id="homeMotivational">Keep your spine, own your day.</div></div>
+<div class="ht-display" onclick="navigateTo('shop')"><span class="ht-coin">🪙</span><span class="ht-value">1,250</span></div>
+</div>
+<div class="screen-content">
+<div class="device-card" onclick="navigateTo('device')">
+<div class="device-card-icon">📡</div>
+<div class="device-card-info"><div class="device-card-name">Device Connected</div><div class="device-card-status"><span class="status-dot connected"></span> <span class="device-conn-text">SpineUp Sensor</span></div></div>
+</div>
+<div class="score-section">
+<div class="score-circle-wrap">
+<svg class="score-circle-svg" viewBox="0 0 150 150"><circle class="score-circle-track" cx="75" cy="75" r="65"/><circle id="scoreCircleFill" class="score-circle-fill" cx="75" cy="75" r="65" stroke-dashoffset="66"/></svg>
+<div style="text-align:center"><div class="score-value" id="scoreValue">85</div><div class="score-label" id="scoreLabel">Great Posture!</div></div>
+</div>
+<div class="score-message" id="scoreMessage">You're doing amazing today!</div>
+</div>
+<div class="daily-goal card">
+<div class="daily-goal-header"><span class="daily-goal-label">🎯 Daily Goal</span><span class="daily-goal-percent" id="goalPercent">75%</span></div>
+<div class="progress-bar"><div class="progress-fill" id="goalFill" style="width:75%"></div></div>
+<div class="daily-goal-time" id="goalTime">Hold good posture for 8h · 6h / 8h</div>
+</div>
+<div class="streak-section" style="margin-top:16px">
+<div class="streak-title">🔥 Weekly Streak</div>
+<div class="streak-row" id="streakRow"></div>
+</div>
+</div>
+</section>
+
+<!-- 06 DEVICE -->
+<section id="screen-device" class="screen has-nav">
+<div class="screen-header"><button class="screen-header-back" onclick="navigateTo('home')">←</button><span class="screen-header-title">My Device</span><div></div></div>
+<div class="screen-content">
+<div class="device-hero">
+<div class="device-image">⌚</div>
+<div class="device-name">SpineUp Sensor</div>
+<div class="device-status"><span class="status-dot connected"></span> <span class="device-conn-text" style="color:var(--color-primary)">Connected</span></div>
+<div class="device-battery"><span>🔋</span> Battery 90%</div>
+</div>
+<div class="device-menu" style="margin-top:16px">
+<div class="device-menu-item" id="calibrateBtn"><div class="device-menu-icon">⚙️</div><div class="device-menu-info"><div class="device-menu-name">Calibration</div><div class="device-menu-desc">Calibrate your device</div></div><span class="device-menu-arrow">›</span></div>
+<div class="device-menu-item"><div class="device-menu-icon">📍</div><div class="device-menu-info"><div class="device-menu-name">Wear Position</div><div class="device-menu-desc">Check how to wear</div></div><span class="device-menu-arrow">›</span></div>
+<div class="device-menu-item"><div class="device-menu-icon">🔄</div><div class="device-menu-info"><div class="device-menu-name">Firmware Update</div><div class="device-menu-desc">Up to date</div></div><span class="device-menu-arrow">›</span></div>
+</div>
+<button class="btn btn-danger" id="disconnectBtn" style="margin-top:24px" onclick="">Disconnect Device</button>
+</div>
+</section>
+
+<!-- 07 PROGRESS -->
+<section id="screen-progress" class="screen has-nav">
+<div class="screen-header"><div></div><span class="screen-header-title">Progress</span><div></div></div>
+<div class="screen-content">
+<div class="tabs" data-tab-group="progress-period" style="margin-bottom:14px"><button class="tab-btn active" data-tab="week">Week</button><button class="tab-btn" data-tab="month">Month</button><button class="tab-btn" data-tab="year">Year</button></div>
+<div class="date-nav"><button class="date-nav-btn">‹</button><span class="date-nav-text">May 12 – May 18</span><button class="date-nav-btn">›</button></div>
+<div class="chart-container"><canvas id="progressBarChart"></canvas></div>
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-label">Avg. Score</div><div class="stat-value">78</div><div class="stat-change">+12% vs last week</div></div>
+<div class="stat-card"><div class="stat-label">Best Day</div><div class="stat-value">92</div><div class="stat-change">May 16</div></div>
+<div class="stat-card"><div class="stat-label">Total Time</div><div class="stat-value">45h</div><div class="stat-change">Good Posture</div></div>
+<div class="stat-card"><div class="stat-label">Improvement</div><div class="stat-value">18%</div><div class="stat-change">vs last week</div></div>
+</div>
+<div class="card" style="margin-bottom:16px;cursor:pointer" onclick="navigateTo('insight')">
+<div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px">🤖</span><div><div style="font-size:14px;font-weight:600">AI Insight</div><div style="font-size:12px;color:var(--text-secondary);margin-top:4px;line-height:1.5">Your posture is best between 9-11 AM. Try scheduling important work then.</div></div></div>
+</div>
+</div>
+</section>
+
+<!-- 08 INSIGHT -->
+<section id="screen-insight" class="screen has-nav">
+<div class="screen-header"><div></div><span class="screen-header-title">Posture Insights</span><div></div></div>
+<div class="screen-content">
+<div class="tabs" style="margin-bottom:14px"><button class="tab-btn active">Daily</button><button class="tab-btn">Weekly</button><button class="tab-btn">Monthly</button></div>
+<div class="date-nav"><button class="date-nav-btn">‹</button><span class="date-nav-text">May 16, 2024</span><button class="date-nav-btn">›</button></div>
+<div class="insight-score-section"><div style="font-size:14px;color:var(--text-secondary);margin-bottom:4px">Posture Score</div><div class="insight-score-value">85</div><div class="insight-score-label">Great</div></div>
+<div class="insight-chart-container"><canvas id="insightLineChart"></canvas></div>
+<div class="breakdown-section">
+<div class="breakdown-title">Breakdown</div>
+<div class="breakdown-item"><span class="breakdown-label">Alignment</span><div class="breakdown-bar"><div class="breakdown-fill" style="width:90%"></div></div><span class="breakdown-value">90%</span></div>
+<div class="breakdown-item"><span class="breakdown-label">Movement</span><div class="breakdown-bar"><div class="breakdown-fill" style="width:80%"></div></div><span class="breakdown-value">80%</span></div>
+<div class="breakdown-item"><span class="breakdown-label">Consistency</span><div class="breakdown-bar"><div class="breakdown-fill" style="width:85%"></div></div><span class="breakdown-value">85%</span></div>
+</div>
+</div>
+</section>
+
+<!-- 09 SHOP -->
+<section id="screen-shop" class="screen has-nav">
+<div class="screen-header"><span class="screen-header-title">Shop</span><div class="ht-display" onclick=""><span class="ht-coin">🪙</span><span class="ht-value">1,250</span></div></div>
+<div class="screen-content">
+<div class="pill-tabs" data-tab-group="shop-category" style="margin-bottom:14px"><button class="pill-tab active" data-tab="all">All</button><button class="pill-tab" data-tab="accessories">Accessories</button><button class="pill-tab" data-tab="bundles">Bundles</button><button class="pill-tab" data-tab="premium">Premium</button></div>
+<div class="products-grid">
+<div class="product-card" data-category="accessories"><div class="product-img">🦴</div><div class="product-info"><div class="product-name">Posture Corrector</div><div class="product-price">750 HT</div><button class="product-btn buy" data-product-id="1">Buy Now</button></div></div>
+<div class="product-card" data-category="accessories"><div class="product-img">🪑</div><div class="product-info"><div class="product-name">Lumbar Support</div><div class="product-price">1,000 HT</div><button class="product-btn buy" data-product-id="2">Buy Now</button></div></div>
+<div class="product-card" data-category="accessories"><div class="product-img">⌚</div><div class="product-info"><div class="product-name">Posture Band</div><div class="product-price">500 HT</div><button class="product-btn locked">🔒 Locked</button></div></div>
+<div class="product-card" data-category="premium"><div class="product-img">📋</div><div class="product-info"><div class="product-name">Coaching Plan</div><div class="product-price">1,500 HT</div><button class="product-btn locked">🔒 Locked</button></div></div>
+</div>
+<div class="banner"><span class="banner-icon">🎉</span>More products coming soon!</div>
+</div>
+</section>
+
+<!-- 10 EXERCISES -->
+<section id="screen-exercises" class="screen has-nav">
+<div class="screen-header"><div></div><span class="screen-header-title">Exercises</span><div></div></div>
+<div class="screen-content">
+<div class="pill-tabs" data-tab-group="exercise-level" style="margin-bottom:14px"><button class="pill-tab active" data-tab="all">All</button><button class="pill-tab" data-tab="beginner">Beginner</button><button class="pill-tab" data-tab="intermediate">Intermediate</button><button class="pill-tab" data-tab="advanced">Advanced</button></div>
+<div class="exercises-list">
+<div class="exercise-item" data-level="beginner"><div class="exercise-icon">🧘</div><div class="exercise-info"><div class="exercise-name">Neck Stretch</div><div class="exercise-meta">5 min · <span class="exercise-level">Beginner</span></div></div><div class="exercise-play">▶</div></div>
+<div class="exercise-item" data-level="beginner"><div class="exercise-icon">💪</div><div class="exercise-info"><div class="exercise-name">Shoulder Roll</div><div class="exercise-meta">4 min · <span class="exercise-level">Beginner</span></div></div><div class="exercise-play">▶</div></div>
+<div class="exercise-item" data-level="intermediate"><div class="exercise-icon">🏋️</div><div class="exercise-info"><div class="exercise-name">Thoracic Extension</div><div class="exercise-meta">6 min · <span class="exercise-level">Intermediate</span></div></div><div class="exercise-play">▶</div></div>
+<div class="exercise-item" data-level="advanced"><div class="exercise-icon">🔥</div><div class="exercise-info"><div class="exercise-name">Back Strengthening</div><div class="exercise-meta">8 min · <span class="exercise-level">Advanced</span></div></div><div class="exercise-play">▶</div></div>
+<div class="exercise-item" data-level="beginner"><div class="exercise-icon">🐱</div><div class="exercise-info"><div class="exercise-name">Cat Cow Stretch</div><div class="exercise-meta">5 min · <span class="exercise-level">Beginner</span></div></div><div class="exercise-play">▶</div></div>
+</div>
+</div>
+</section>
+
+<!-- 11 REMINDERS -->
+<section id="screen-reminders" class="screen has-nav">
+<div class="screen-header"><button class="screen-header-back" onclick="navigateTo('profile')">←</button><span class="screen-header-title">Reminders</span><div></div></div>
+<div class="screen-content">
+<div class="reminders-list">
+<div class="reminder-item"><div class="reminder-icon">🧍</div><div class="reminder-info"><div class="reminder-name">Posture Reminder</div><div class="reminder-desc">Every 1 hour</div></div><div class="toggle-switch active" data-toggle="posture"></div></div>
+<div class="reminder-item"><div class="reminder-icon">🏃</div><div class="reminder-info"><div class="reminder-name">Exercise Reminder</div><div class="reminder-desc">Daily at 8:00 PM</div></div><div class="toggle-switch active" data-toggle="exercise"></div></div>
+<div class="reminder-item"><div class="reminder-icon">💧</div><div class="reminder-info"><div class="reminder-name">Hydration Reminder</div><div class="reminder-desc">Every 2 hours</div></div><div class="toggle-switch" data-toggle="hydration"></div></div>
+<div class="reminder-item"><div class="reminder-icon">📊</div><div class="reminder-info"><div class="reminder-name">Weekly Report</div><div class="reminder-desc">Every Sunday</div></div><div class="toggle-switch active" data-toggle="weekly"></div></div>
+</div>
+</div>
+</section>
+
+<!-- 12 PROFILE -->
+<section id="screen-profile" class="screen has-nav">
+<div class="status-bar"><span>9:41</span><div class="status-icons">●●● ▐█▌</div></div>
+<div class="screen-content">
+<div class="profile-header">
+<div class="avatar">A</div>
+<div class="level-badge" style="margin-top:12px">⭐ Level 12</div>
+<div class="profile-name">Arjun</div>
+<div class="profile-level-name">Posture Master</div>
+<div class="profile-xp">
+<div style="font-size:11px;color:var(--text-secondary);margin-bottom:4px;display:flex;justify-content:space-between"><span>1,250 / 2,000 XP</span></div>
+<div class="xp-bar"><div class="xp-fill" id="xpFill" style="width:0%"></div></div>
+</div>
+</div>
+<div class="section-header"><span class="section-title">Badges</span><span class="section-link">View All</span></div>
+<div class="badges-scroll">
+<div class="badge-item"><div class="badge-icon earned">👣</div><div class="badge-name">First Step</div></div>
+<div class="badge-item"><div class="badge-icon earned">🔥</div><div class="badge-name">7 Day Streak</div></div>
+<div class="badge-item"><div class="badge-icon earned">⭐</div><div class="badge-name">Perfect Week</div></div>
+<div class="badge-item"><div class="badge-icon earned">🌅</div><div class="badge-name">Early Bird</div></div>
+<div class="badge-item"><div class="badge-icon locked">🔙</div><div class="badge-name">Back in Action</div></div>
+<div class="badge-item"><div class="badge-icon locked">🔒</div><div class="badge-name">Coming Soon</div></div>
+</div>
+<div style="margin-top:20px"><div class="section-title" style="margin-bottom:8px">Settings</div>
+<div class="settings-row"><div class="settings-info"><div class="settings-name">Private Mode</div><div class="settings-desc">Only you can see your data</div></div><div class="toggle-switch active" data-toggle="private"></div></div>
+<div class="settings-row"><div class="settings-info"><div class="settings-name">Dare Mode</div><div class="settings-desc">Get challenged by friends</div></div><div class="toggle-switch" data-toggle="dare"></div></div>
+<div class="settings-row" onclick="navigateTo('reminders')" style="cursor:pointer"><div class="settings-info"><div class="settings-name">Reminders</div><div class="settings-desc">Posture reminders</div></div><span class="settings-arrow">›</span></div>
+</div>
+</div>
+</section>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" id="bottomNav" style="display:none">
+<button class="nav-item active" data-screen="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></button>
+<button class="nav-item" data-screen="progress"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg><span>Progress</span></button>
+<button class="nav-item" data-screen="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span>Shop</span></button>
+<button class="nav-item" data-screen="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profile</span></button>
+</nav>
+
+<!-- REDEEM MODAL -->
+<div class="modal-overlay" id="redeemModal">
+<div class="modal">
+<div class="modal-title">Confirm Redemption</div>
+<div class="modal-text">Redeem <strong id="redeemProductName"></strong> for <strong id="redeemProductCost"></strong>?</div>
+<div class="modal-actions"><button class="btn btn-outline btn-sm" onclick="hideModal('redeemModal')">Cancel</button><button class="btn btn-primary btn-sm" id="confirmRedeem">Redeem</button></div>
+</div>
+</div>
+
+<!-- DARE MODE MODAL -->
+<div class="modal-overlay" id="dareModal">
+<div class="modal">
+<div class="modal-title">⚠️ Enable Dare Mode?</div>
+<div class="modal-text">Bad posture will trigger a funny beep sound publicly! Are you ready for the challenge?</div>
+<div class="modal-actions"><button class="btn btn-outline btn-sm" onclick="hideModal('dareModal')">Cancel</button><button class="btn btn-primary btn-sm" onclick="hideModal('dareModal');console.log('[BLE] DARE_ON')">Let's Go!</button></div>
+</div>
+</div>
+
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/interactions.js"></script>
+</body>
+</html>

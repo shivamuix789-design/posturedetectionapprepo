@@ -1,0 +1,53 @@
+/* ============================================
+   SpineUp Design System — CSS Custom Properties
+   ============================================ */
+:root {
+  --bg-primary: #0a0f0a;
+  --bg-surface: #111a11;
+  --bg-elevated: #1a2a1a;
+  --bg-input: #0d150d;
+  --bg-modal: rgba(0, 0, 0, 0.7);
+  --color-primary: #00c853;
+  --color-primary-dim: #00a844;
+  --color-primary-dark: #007a33;
+  --color-primary-glow: rgba(0, 200, 83, 0.3);
+  --color-primary-subtle: rgba(0, 200, 83, 0.08);
+  --color-primary-bg: rgba(0, 200, 83, 0.12);
+  --color-accent: #4caf50;
+  --color-amber: #ff9800;
+  --color-amber-bg: rgba(255, 152, 0, 0.15);
+  --color-red: #ff5252;
+  --color-red-bg: rgba(255, 82, 82, 0.12);
+  --color-blue: #4285f4;
+  --color-gold: #ffd700;
+  --text-primary: #ffffff;
+  --text-secondary: #8a9a8a;
+  --text-tertiary: #5a6a5a;
+  --border-color: rgba(0, 200, 83, 0.15);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-input: rgba(0, 200, 83, 0.25);
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-2xl: 24px;
+  --space-3xl: 32px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 50px;
+  --radius-circle: 50%;
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 20px rgba(0, 200, 83, 0.3);
+  --shadow-glow-lg: 0 0 40px rgba(0, 200, 83, 0.4);
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --screen-width: 390px;
+  --nav-height: 70px;
+  --status-bar-height: 44px;
+  --screen-padding: 20px;
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-spring: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
